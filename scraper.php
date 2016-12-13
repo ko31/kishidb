@@ -10,7 +10,7 @@ class Scraper {
         $this->client = new Client();
     }
 
-    public function getKishi( $no ) {
+    public function getKishi($no, $format = 'array' ) {
         $data = array();
 
         // 棋士ページをGET
@@ -50,11 +50,10 @@ class Scraper {
             }
         });
 
-        return json_encode($data);
+        if ($format == 'json') {
+            return json_encode($data);
+        } else {
+            return $data;
+        }
     }
 }
-
-$scraper = new Scraper();
-
-echo $scraper->getKishi(175);
-
