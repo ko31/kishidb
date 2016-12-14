@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="css/style.css">
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<title></title>
+<style>
+body {
+    padding: 10px;
+}
+h1 {
+    font-size: 1.5em;
+    color: #222222;
+    font-weight: bold;
+}
+#chart_div {
+    height: 1200px;
+}
+</style>
+</head>
+<body>
+<h1>都道府県別棋士数グラフ</h1>
+<div id="chart_div"></div>
+<script>
+google.charts.load('current', {packages: ['corechart', 'bar']});
+google.charts.setOnLoadCallback(drawBasic);
+function drawBasic() {
+    var data = google.visualization.arrayToDataTable(
+[["\u90fd\u9053\u5e9c\u770c","\u68cb\u58eb\u6570"],["\u5317\u6d77\u9053",14],["\u9752\u68ee\u770c",4],["\u5ca9\u624b\u770c",0],["\u5bae\u57ce\u770c",5],["\u79cb\u7530\u770c",2],["\u5c71\u5f62\u770c",3],["\u798f\u5cf6\u770c",1],["\u8328\u57ce\u770c",2],["\u6803\u6728\u770c",1],["\u7fa4\u99ac\u770c",4],["\u57fc\u7389\u770c",11],["\u5343\u8449\u770c",16],["\u6771\u4eac\u90fd",82],["\u795e\u5948\u5ddd\u770c",20],["\u65b0\u6f5f\u770c",5],["\u5bcc\u5c71\u770c",4],["\u77f3\u5ddd\u770c",1],["\u798f\u4e95\u770c",0],["\u5c71\u68a8\u770c",1],["\u9577\u91ce\u770c",5],["\u5c90\u961c\u770c",1],["\u9759\u5ca1\u770c",10],["\u611b\u77e5\u770c",10],["\u4e09\u91cd\u770c",5],["\u6ecb\u8cc0\u770c",0],["\u4eac\u90fd\u5e9c",6],["\u5927\u962a\u5e9c",27],["\u5175\u5eab\u770c",22],["\u5948\u826f\u770c",4],["\u548c\u6b4c\u5c71\u770c",4],["\u9ce5\u53d6\u770c",3],["\u5cf6\u6839\u770c",0],["\u5ca1\u5c71\u770c",7],["\u5e83\u5cf6\u770c",9],["\u5c71\u53e3\u770c",0],["\u5fb3\u5cf6\u770c",2],["\u9999\u5ddd\u770c",1],["\u611b\u5a9b\u770c",1],["\u9ad8\u77e5\u770c",2],["\u798f\u5ca1\u770c",7],["\u4f50\u8cc0\u770c",0],["\u9577\u5d0e\u770c",3],["\u718a\u672c\u770c",1],["\u5927\u5206\u770c",0],["\u5bae\u5d0e\u770c",2],["\u9e7f\u5150\u5cf6\u770c",0],["\u6c96\u7e04\u770c",0]]
+    );
+
+    var options = {
+        title: '',
+        chartArea: {top: 20, width: '50%', height: '100%'},
+        hAxis: {
+          minValue: 0
+        }
+    };
+    var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+    chart.draw(data, options);
+}
+</script>
+</body>
+</html>
