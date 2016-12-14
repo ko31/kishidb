@@ -57,8 +57,7 @@ $json[] = array('都道府県', '棋士数');
 
 foreach($prefecture as $key => $val) {
     $count = mb_substr_count($data, $val[0]);
-    echo $val[0] ." = ".$count."\n";
     $json[] = array($val[0], $count);
 }
 
-file_put_contents("data.json", json_encode($json));
+echo json_encode($json);
