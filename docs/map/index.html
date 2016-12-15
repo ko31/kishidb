@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title></title>
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+<script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<style>
+html {
+    width: 100%;
+    height: 100%;
+}
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+#map {
+    width: 100%;
+    height: 100%;
+}
+</style>
+</head>
+<body>
+<div id="map"></div>
+<script>
+$(function() {
+    var map = L.map('map').setView([35.6772243, 139.707258], 8);
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    $.getJSON("map.json" , function(data) {
+        len = data.length;
+        for(var i = 0; i < len; i++) {
+            L.marker([data[i].lat, data[i].lng]).addTo(map)
+                .bindPopup('<a href="http://www.shogi.or.jp/player/pro/'+data[i].no+'.html" target="_blank">'+data[i].name+'</a><br>'+data[i].birthplace+'<br><img src="'+data[i].image+'" width="120">');
+//                .openPopup();
+        }
+    });
+});
+</script>
+</body>
+</html>
