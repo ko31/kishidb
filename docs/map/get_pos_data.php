@@ -1,5 +1,4 @@
 <?php
-$key = 'xxxxxxxxxx';
 
 $data = file_get_contents("kishi_all.json");
 $data = json_decode($data);
@@ -7,7 +6,7 @@ $data = json_decode($data);
 $maps = array();
 
 foreach($data as $kishi) {
-    $result = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address='.urlencode($kishi->birthplace).'&key='.$key);
+    $result = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address='.urlencode($kishi->birthplace).'&key=AIzaSyAtslO_IFvo3f6CEZktmoEuBjhlC67FQ1g');
     $result = json_decode($result, true);
     if ($result['status'] != 'OK') {
         continue;
