@@ -31,7 +31,8 @@ $(function() {
     var myIcon = L.Icon.extend({
         options: {
             iconSize:     [28, 53],
-            iconAnchor:   [20, 52]
+            iconAnchor:   [20, 52],
+            popupAnchor:  [0, -48]
         }
     });
     var manIcon = new myIcon({iconUrl: 'js/images/pin-blue-solid-4.png'}),
