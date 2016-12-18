@@ -10,11 +10,20 @@ class Scraper {
         $this->client = new Client();
     }
 
-    public function getKishi($no, $format = 'array' ) {
+    public function getKishiLady($no, $format = 'array') {
+        return $this->getKishi($no, $format, 2);
+    }
+
+    public function getKishi($no, $format = 'array', $sex = 1) {
         $data = array();
 
-        // 棋士ページをGET
-        $crawler = $this->client->request('GET', 'http://www.shogi.or.jp/player/pro/' . $no . '.html');
+        // 棋士ページ
+        if ($sex == 1) {
+            $crawler = $this->client->request('GET', 'http://www.shogi.or.jp/player/pro/' . $no . '.html');
+        // 女流棋士ページ
+        } else {
+            $crawler = $this->client->request('GET', 'http://www.shogi.or.jp/player/lady/' . $no . '.html');
+        }
 
         // 名前を取得
         $dom = $crawler->filter('div.nameArea');
@@ -49,6 +58,14 @@ class Scraper {
                 $data['junni'] = $td;
             }
         });
+
+        // 性別を取得
+        // TODO：現時点では棋士 or 女流棋士で判断しているが女性棋士が誕生したらこれだとNG
+        if ($sex == 1) {
+            $data['sex'] = 'man';
+        } else {
+            $data['sex'] = 'woman';
+        }
 
         if ($format == 'json') {
             return json_encode($data);
