@@ -1,5 +1,5 @@
 <?php
-$key = 'xxxxxxxxxx';
+$key = 'AIzaSyAtslO_IFvo3f6CEZktmoEuBjhlC67FQ1g';
 
 $data = file_get_contents("kishi_all.json");
 $data = json_decode($data);
@@ -19,9 +19,10 @@ foreach($data as $kishi) {
         'image' => $kishi->image,
         'lat' => $result['results'][0]['geometry']['location']['lat'],
         'lng' => $result['results'][0]['geometry']['location']['lng'],
+        'sex' => $kishi->sex,
     );
     echo $kishi->no." ".$kishi->name."\n";
-    sleep(1);
+    usleep(500000);
 }
 
 $json = json_encode($maps);

@@ -28,6 +28,15 @@ body {
 <div id="map"></div>
 <script>
 $(function() {
+    var myIcon = L.Icon.extend({
+        options: {
+            iconSize:     [28, 53],
+            iconAnchor:   [20, 52]
+        }
+    });
+    var manIcon = new myIcon({iconUrl: 'js/images/pin-blue-solid-4.png'}),
+        womanIcon = new myIcon({iconUrl: 'js/images/pin-magenta-solid-4.png'});
+
     var map = L.map('map').setView([35.6772243, 139.707258], 8);
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -36,9 +45,13 @@ $(function() {
     $.getJSON("map.json" , function(data) {
         len = data.length;
         for(var i = 0; i < len; i++) {
-            L.marker([data[i].lat, data[i].lng]).addTo(map)
-                .bindPopup('<a href="http://www.shogi.or.jp/player/pro/'+data[i].no+'.html" target="_blank">'+data[i].name+'</a><br>'+data[i].birthplace+'<br><img src="'+data[i].image+'" width="120">');
-//                .openPopup();
+            if (data[i].sex == 'man') {
+                L.marker([data[i].lat, data[i].lng], {icon: manIcon}).addTo(map)
+                    .bindPopup('<a href="http://www.shogi.or.jp/player/pro/'+data[i].no+'.html" target="_blank">'+data[i].name+'</a><br>'+data[i].birthplace+'<br><img src="'+data[i].image+'" width="120">');
+            } else {
+                L.marker([data[i].lat, data[i].lng], {icon: womanIcon}).addTo(map)
+                    .bindPopup('<a href="http://www.shogi.or.jp/player/lady/'+data[i].no+'.html" target="_blank">'+data[i].name+'</a><br>'+data[i].birthplace+'<br><img src="'+data[i].image+'" width="120">');
+            }
         }
     });
 });
