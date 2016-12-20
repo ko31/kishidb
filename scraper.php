@@ -52,6 +52,8 @@ class Scraper {
                 $data['birthday'] = $td;
             } else if ($th == '出身地') { 
                 $data['birthplace'] = $td;
+            } else if ($th == '師匠') { 
+                $data['mentor'] = $td;
             } else if ($th == '竜王戦') { 
                 $data['ryuou'] = $td;
             } else if ($th == '順位戦') { 
