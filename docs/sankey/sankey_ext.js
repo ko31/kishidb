@@ -1,5 +1,6 @@
 if (typeof(chartWidth) == "undefined") chartWidth = 640;
 if (typeof(chartHeight) == "undefined") chartHeight = 1200;
+if (typeof(json) == "undefined") json = "sankey.json";
 
 var margin = {top: 1, right: 1, bottom: 5, left: 1},
     width = chartWidth - margin.left - margin.right,
@@ -22,7 +23,7 @@ var sankey = d3.sankey()
 
 var path = sankey.link();
 
-d3.json("sankey.json", function(energy) {
+d3.json(json, function(energy) {
 
   sankey
       .nodes(energy.nodes)
@@ -88,10 +89,10 @@ d3.json("sankey.json", function(energy) {
       var stroke_opacity = 0;
       if( d3.select(this).attr("data-clicked") == "1" ){
           d3.select(this).attr("data-clicked","0");
-          stroke_opacity = 0.2;
+          stroke_opacity = 0.05;
       }else{
           d3.select(this).attr("data-clicked","1");
-          stroke_opacity = 0.5;
+          stroke_opacity = 0.6;
       }
 
       var traverse = [{
