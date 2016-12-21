@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<title>d3.js</title>
+<style>
+.node rect {
+  cursor: move;
+  fill-opacity: .9;
+  shape-rendering: crispEdges;
+}
+.node text {
+  pointer-events: none;
+  text-shadow: 0 1px 0 #fff;
+}
+.link {
+  fill: none;
+  stroke: #000;
+  stroke-opacity: .2;
+}
+.link:hover {
+  stroke-opacity: .6;
+}
+#chart {
+  font-size: 14px;
+}
+</style>
+<body>
+
+<p id="chart">
+
+<script src="d3.v3.js" charset="utf-8"></script>
+<script src="sankey.js"></script>
+<script>
+  var chartWidth = 1000;
+  var chartHeight = 8000;
+</script>
+<script src="sankey_ext.js"></script>
+
+</body>
+</html>
