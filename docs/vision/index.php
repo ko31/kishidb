@@ -3,7 +3,8 @@
     $api_key = "AIzaSyAtslO_IFvo3f6CEZktmoEuBjhlC67FQ1g";
 
     // 画像パス
-    $image_path = "./235.jpg";
+//    $image_path = "./235.jpg";
+    $image_path = "http://www.shogi.or.jp/images/player/pro/57.jpg";
 
     // リクエスト用のJSONを作成
     $json = json_encode( array(
