@@ -60,6 +60,9 @@ class Scraper {
                 $data['junni'] = $td;
             }
         });
+        if (empty($data['no'])) {
+            $data['no'] = $no;
+        }
 
         // 性別を取得
         // TODO：現時点では棋士 or 女流棋士で判断しているが女性棋士が誕生したらこれだとNG
