@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="description" content="日本将棋連盟Webサイトの棋士データベースの情報を元に作成した棋士出身地マップです。" />
 <title>OpenStreetMapで棋士出身地マップ</title>
 <link rel="stylesheet" href="css/leaflet.css" />
 <script src="js/leaflet.js"></script>
@@ -18,6 +19,14 @@ body {
     height: 100%;
     margin: 0;
 }
+header {
+    width: 100%;
+}
+p {
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+}
 #map {
     width: 100%;
     height: 100%;
@@ -25,6 +34,9 @@ body {
 </style>
 </head>
 <body>
+<header>
+<p>棋士出身地マップ by <a href="https://kifulog.ko31.com/" target="_blank">きふろぐ</a></p>
+</header>
 <div id="map"></div>
 <script>
 $(function() {
