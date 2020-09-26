@@ -1,5 +1,15 @@
 <?php
-$key = 'AIzaSyAtslO_IFvo3f6CEZktmoEuBjhlC67FQ1g';
+require './vendor/autoload.php';
+
+require_once 'inc/YahooGeocoder.php';
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+$YahooGeocoder = new YahooGeocoder();
+if (!$YahooGeocoder->isEnable()) {
+    exit('Cannot geocoding.');
+}
 
 $data = file_get_contents("kishi_all.json");
 $data = json_decode($data);
@@ -8,13 +18,14 @@ $maps = array();
 $positions = array();
 
 foreach($data as $kishi) {
-    $result = file_get_contents('https://maps.googleapis.com/maps/api/geocode/json?address='.urlencode($kishi->birthplace).'&key='.$key);
-    $result = json_decode($result, true);
-    if ($result['status'] != 'OK') {
+    $locations = $YahooGeocoder->geocoding($kishi->birthplace);
+    if (!$locations) {
+        echo "{$kishi->no} {$kishi->name} Geocoding failed.\n";
         continue;
     }
-    $lat = $result['results'][0]['geometry']['location']['lat'];
-    $lng = $result['results'][0]['geometry']['location']['lng'];
+    $lng = $locations[0];
+    $lat = $locations[1];
+
     if (in_array($lat . "," . $lng, $positions)) {
         $lat -= 0.00005;
         $lng += 0.0005;
@@ -29,11 +40,12 @@ foreach($data as $kishi) {
         'lng' => $lng,
         'sex' => $kishi->sex,
     );
-    echo $kishi->no." ".$kishi->name."\n";
-//    usleep(500000);
+    echo "{$kishi->no} {$kishi->name} {$kishi->birthplace} $lng,$lat\n";
     usleep(250000);
 }
 
 $json = json_encode($maps);
 
 file_put_contents('map.json', $json);
+
+echo "done\n";

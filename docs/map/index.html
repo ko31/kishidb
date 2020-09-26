@@ -4,8 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<meta name="description" content="日本将棋連盟Webサイトの棋士データベースの情報を元に作成した棋士出身地マップです。" />
-<title>OpenStreetMapで棋士出身地マップ</title>
+<meta name="description" content="OpenStreetMapで作った将棋の棋士・女流棋士の出身地マップです" />
+<title>将棋の棋士・女流棋士出身地マップ</title>
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@kifulog">
+<meta property="og:title" content="OpenStreetMapで棋士・女流棋士出身地マップ"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://ko31.github.io/kishidb/map/"/>
+<meta property="og:site_name" content="将棋の棋士・女流棋士出身地マップ"/>
+<meta property="og:description" content="OpenStreetMapで作った将棋の棋士・女流棋士の出身地マップです"/>
+<meta property="og:image" content="https://ko31.github.io/kishidb/map/images/ogp.png"/>
 <link rel="stylesheet" href="css/leaflet.css" />
 <script src="js/leaflet.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -47,12 +55,12 @@ $(function() {
             popupAnchor:  [0, -48]
         }
     });
-    var manIcon = new myIcon({iconUrl: 'js/images/pin-blue-solid-4.png'}),
-        womanIcon = new myIcon({iconUrl: 'js/images/pin-magenta-solid-4.png'});
+    var manIcon = new myIcon({iconUrl: 'images/pin-blue-solid-4.png'}),
+        womanIcon = new myIcon({iconUrl: 'images/pin-magenta-solid-4.png'});
 
     var map = L.map('map').setView([35.6772243, 139.707258], 8);
-    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
     $.getJSON("map.json" , function(data) {
@@ -60,10 +68,10 @@ $(function() {
         for(var i = 0; i < len; i++) {
             if (data[i].sex == 'man') {
                 L.marker([data[i].lat, data[i].lng], {icon: manIcon}).addTo(map)
-                    .bindPopup('<a href="http://www.shogi.or.jp/player/pro/'+data[i].no+'.html" target="_blank">'+data[i].name+'</a><br>'+data[i].birthplace+'<br><img src="'+data[i].image+'" width="120">');
+                    .bindPopup('<a href="https://www.shogi.or.jp/player/pro/'+data[i].no+'.html" target="_blank">'+data[i].name+'</a><br>'+data[i].birthplace+'<br><img src="'+data[i].image+'" width="120">');
             } else {
                 L.marker([data[i].lat, data[i].lng], {icon: womanIcon}).addTo(map)
-                    .bindPopup('<a href="http://www.shogi.or.jp/player/lady/'+data[i].no+'.html" target="_blank">'+data[i].name+'</a><br>'+data[i].birthplace+'<br><img src="'+data[i].image+'" width="120">');
+                    .bindPopup('<a href="https://www.shogi.or.jp/player/lady/'+data[i].no+'.html" target="_blank">'+data[i].name+'</a><br>'+data[i].birthplace+'<br><img src="'+data[i].image+'" width="120">');
             }
         }
     });
