@@ -23,14 +23,21 @@ foreach($data as $kishi) {
         echo "{$kishi->no} {$kishi->name} Geocoding failed.\n";
         continue;
     }
-    $lng = $locations[0];
-    $lat = $locations[1];
+    // Yahoo API は 137.21368220,36.69601510 のように細かい単位で取得されるので、
+    // 少し上位の桁にまるめておく。
+    $lng = round($locations[0], 4);
+    $lat = round($locations[1], 5);
 
-    if (in_array($lat . "," . $lng, $positions)) {
-        $lat -= 0.00005;
-        $lng += 0.0005;
+    // 同じ座標が存在する場合、重ならないよう少しずつ位置をずらす。
+    $_position = $lat . "," . $lng;
+    if (isset($positions[$_position])) {
+        $lat += $positions[$_position] * 0.0001;
+        $lng += $positions[$_position] * 0.001;
+        $positions[$_position]++;
+    } else {
+        $positions[$_position] = 1;
     }
-    $positions[] = $lat . "," . $lng;
+
     $maps[] = array(
         'no' => $kishi->no,
         'name' => $kishi->name,
@@ -41,7 +48,7 @@ foreach($data as $kishi) {
         'sex' => $kishi->sex,
     );
     echo "{$kishi->no} {$kishi->name} {$kishi->birthplace} $lng,$lat\n";
-    usleep(250000);
+    usleep(300000);
 }
 
 $json = json_encode($maps);
