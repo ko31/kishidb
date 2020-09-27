@@ -1,8 +1,19 @@
-/vendor/
+# OS or Editor
+.DS_Store
+Thumbs.db
+*.swo
+*.swp
+
+# composer packages
+vendor/
+
+# custom
 *.json
+!composer.json
 !map.json
 !sankey.json
 !sankey_pro.json
 !sankey_lady.json
-*~
+
 .env
+*~
