@@ -19,10 +19,10 @@ class Scraper {
 
         // 棋士ページ
         if ($sex == 1) {
-            $crawler = $this->client->request('GET', 'http://www.shogi.or.jp/player/pro/' . $no . '.html');
+            $crawler = $this->client->request('GET', 'https://www.shogi.or.jp/player/pro/' . $no . '.html');
         // 女流棋士ページ
         } else {
-            $crawler = $this->client->request('GET', 'http://www.shogi.or.jp/player/lady/' . $no . '.html');
+            $crawler = $this->client->request('GET', 'https://www.shogi.or.jp/player/lady/' . $no . '.html');
         }
 
         // 名前を取得
