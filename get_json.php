@@ -5,7 +5,7 @@ $scraper = new Scraper();
 
 $data = array();
 
-for ($i=1; $i<=323; $i++) {
+for ($i=1; $i<=326; $i++) {
 echo "$i\n";
     $_kishi = $scraper->getKishi($i);
     if ($_kishi) {

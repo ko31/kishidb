@@ -8,6 +8,7 @@ Thumbs.db
 vendor/
 
 # custom
+*.txt
 *.json
 !composer.json
 !map.json
