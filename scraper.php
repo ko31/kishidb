@@ -38,7 +38,7 @@ class Scraper {
         // 画像URLを取得
         $dom = $crawler->filter('div.imgArea img');
         $dom->each(function ($node) use (&$data) {
-            $data['image'] = 'http://www.shogi.or.jp' . $node->attr('src');
+            $data['image'] = 'https://www.shogi.or.jp' . $node->attr('src');
         });
 
         // 基本情報を取得
