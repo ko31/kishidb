@@ -1,8 +1,14 @@
 # 棋士データベースで遊ぶ
 
-将棋連盟 Web サイトの棋士データベースで遊んでみます。
+将棋連盟 Web サイトの[棋士データベース](http://www.shogi.or.jp/)で遊んでみます。
 
-* [日本将棋連盟](http://www.shogi.or.jp/) 
+以下、これまでにできたもの。
+
+- [都道府県別棋士数グラフ](https://ko31.github.io/kishidb/prefecture/)
+- [将棋の棋士・女流棋士出身地マップ](https://ko31.github.io/kishidb/map/)
+- [棋士データベース クイックサーチ](https://ko31.github.io/kishidb/search/)
+- [棋士名でワードクラウド](https://ko31.github.io/kishidb/wordcloud/)
+- [棋士の師弟関係Sankey Diagram](https://ko31.github.io/kishidb/sankey/)
 
 ## 関連URL
 
